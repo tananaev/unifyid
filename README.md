@@ -13,5 +13,8 @@ Standard gradle project. Import in Android Studio and build. No special steps ne
 - Capturing photo takes some time, so total time might be slightly more than 5 seconds
 - Video capturing could be a better option, but not enough time to implement both to compare
 - Targeting Android API 23 to use crypto; if lower version required might need to use different APIs
-- Using ECB mode which is not the most secure one; can be improved by using GCM encryption mode
 - File reading logic needs some improvements
+- Using ListView to simplify code; in real world app it's probably better to use RecyclerView
+- AsyncTask should not reference activity, but to save time it is for the moment
+- There are many things that can be improved in the UI, but no time
+- Error handling and lifecycle handling needs to be improved as well, but again no time

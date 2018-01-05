@@ -15,6 +15,8 @@ public class KeyManager {
     private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
     private static final String KEY_ALIAS = "test";
 
+    public static final byte[] IV_BYTES = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
     public SecretKey getKey() throws GeneralSecurityException, IOException {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
         keyStore.load(null);
@@ -26,8 +28,9 @@ public class KeyManager {
                     KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
             KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(KEY_ALIAS,
                     KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                    .setRandomizedEncryptionRequired(false)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
                     .build();
             keyGenerator.init(keyGenParameterSpec);
             return keyGenerator.generateKey();

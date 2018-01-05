@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 
 public class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
 
@@ -25,8 +26,8 @@ public class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... files) {
         FileInputStream stream = null;
         try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/NoPadding");
-            cipher.init(Cipher.DECRYPT_MODE, new KeyManager().getKey());
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            cipher.init(Cipher.DECRYPT_MODE, new KeyManager().getKey(), new IvParameterSpec(KeyManager.IV_BYTES));
             byte[] bytes = new byte[(int) new File(mContext.getFilesDir() + "/" + files[0]).length()];
             stream = mContext.openFileInput(files[0]);
             stream.read(bytes);

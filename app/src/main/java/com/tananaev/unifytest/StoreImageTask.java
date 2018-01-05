@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 
 public class StoreImageTask extends AsyncTask<byte[], Void, Void> {
 
@@ -22,8 +23,8 @@ public class StoreImageTask extends AsyncTask<byte[], Void, Void> {
     protected Void doInBackground(byte[]... bytes) {
         FileOutputStream stream = null;
         try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/NoPadding");
-            cipher.init(Cipher.ENCRYPT_MODE, new KeyManager().getKey());
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, new KeyManager().getKey(), new IvParameterSpec(KeyManager.IV_BYTES));
             stream = mContext.openFileOutput(String.valueOf(System.currentTimeMillis()), Context.MODE_PRIVATE);
             stream.write(cipher.doFinal(bytes[0]));
             stream.close();
