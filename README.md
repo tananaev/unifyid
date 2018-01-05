@@ -8,10 +8,11 @@ Standard gradle project. Import in Android Studio and build. No special steps ne
 
 ## Further Considerations
 
-- Handle camera permissions better
+- Handle camera permissions alternative cases
 - Handle case when user presses home button in the middle of the capture process
 - Capturing photo takes some time, so total time might be slightly more than 5 seconds
 - Video capturing could be a better option, but not enough time to implement both to compare
+- Photos are encrypted using AES as security is a main concern; key is stored in standard Android keystore
 - Targeting Android API 23 to use crypto; if lower version required might need to use different APIs
 - File reading logic needs some improvements
 - Using ListView to simplify code; in real world app it's probably better to use RecyclerView
