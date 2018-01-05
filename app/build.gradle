@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.tananaev.unifytest"
-        minSdkVersion 18
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -19,5 +19,6 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.github.google:cameraview:3eaeac09a7'
 }

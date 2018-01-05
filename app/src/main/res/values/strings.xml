@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UnifyTest</string>
+    <string name="capture_complete">Capture complete</string>
 </resources>
